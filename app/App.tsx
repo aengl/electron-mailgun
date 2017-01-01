@@ -1,12 +1,21 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import * as request from 'request';
-
-const MediumEditor = require('medium-editor');
+import { MailEditor } from './MailEditor';
 
 require('./App.css');
-require('./medium-editor.css');
-require('./medium-beagle.css');
+
+// declare namespace JSX {
+//   interface IntrinsicElements {
+//     foo: any;
+//     [name: string]: any;
+//   }
+
+//   interface Element {}
+// }
+
+// class MailBody extends HTMLElement {}
+// (window as any).customElements.define('foo', MailBody);
 
 interface Props {}
 
@@ -22,7 +31,6 @@ interface State {
 
 export class App extends React.Component<Props, State> {
   link: HTMLLinkElement;
-  editor: any;
   saveTimer: number;
   refs: {
     subject: HTMLInputElement;
@@ -62,19 +70,6 @@ export class App extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.editor = new MediumEditor('.App-editor-content', {
-      buttonLabels: 'fontawesome'
-    });
-    // Restore state
-    this.editor.setContent(this.state.html);
-    // Subscribe to changes
-    this.editor.subscribe('editableInput', (event: any, editable: any) => {
-      this.setState({
-        html: editable.innerHTML
-      });
-      this.queueSave();
-    });
-    // Apply styles
     this.refreshCSS();
     this.setState({
       status: (
@@ -127,7 +122,7 @@ export class App extends React.Component<Props, State> {
           {/* HTML editor */}
           <div className='form-group'>
             <div className='form-control App-editor'>
-              <div id='body' className='App-editor-content' />
+              <MailEditor />
             </div>
           </div>
           {/* Submit */}

@@ -24,12 +24,14 @@
     "electron": "^1.4.13"
   },
   "devDependencies": {
+    "@types/draft-js": "^0.7.34",
     "@types/node": "^6.0.54",
     "@types/react": "^0.14.55",
     "@types/react-dom": "^0.14.19",
     "css-loader": "^0.26.1",
+    "draft-js": "^0.9.1",
     "html-webpack-plugin": "^2.24.1",
-    "medium-editor": "^5.22.1",
+    "medium-draft": "^0.4.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "style-loader": "^0.13.1",
